@@ -1,0 +1,144 @@
+//Anderson Ixcoy - 202208019
+//Código arreglo, busqueda lineal
+
+#include <iostream>
+#include<Windows.h>
+#include<math.h>
+using namespace std;
+
+// Función para realizar la búsqueda lineal en un arreglo
+int busquedaLineal(int arreglo[], int tamano, int valorBuscado) {
+    for (int i = 0; i < tamano; i++) {
+        if (arreglo[i] == valorBuscado) {
+            return i; // Se encontró el valor, devuelve el índice
+        }
+    }
+    return -1; // No se encontró el valor
+}
+
+int main() {
+    int n1, n2, n3, n4, n5, n6, n7, n8, n9, n10;
+    cout << "\t\t- BIENVENIDO AL PROGRAMA DE BUSQUEDA - " << endl;
+    cout << endl;
+    cout << "\t- Ingrese 10 numeros aleatorios: " << endl;
+    cout << "-. ";
+    cin >> n1;
+    cout << "-. ";
+    cin >> n2;
+    cout << "-. ";
+    cin >> n3;
+    cout << "-. ";
+    cin >> n4;
+    cout << "-. ";
+    cin >> n5;
+    cout << "-. ";
+    cin >> n6;
+    cout << "-. ";
+    cin >> n7;
+    cout << "-. ";
+    cin >> n8;
+    cout << "-. ";
+    cin >> n9;
+    cout << "-. ";
+    cin >> n10;
+    cout << "\t- Ingrese el numero que desea buscar: " << endl;
+    int encontrar;
+    cout << "-. ";
+    cin >> encontrar;
+
+    int arreglo[] = { n1, n2, n3, n4, n5, n6, n7, n8, n9, n10 };
+    int tamano = sizeof(arreglo) / sizeof(arreglo[0]);
+
+    cout << endl;
+
+    int valor = encontrar;
+    int result = busquedaLineal(arreglo, tamano, valor);
+    if (result != -1) {
+        cout << "El valor " << valor << " se encuentra en el indice " << result << endl;
+    }
+    else {
+        cout << "El valor " << valor << " no se encuentra en el arreglo" << endl;
+    }
+
+    return 0;
+}
+//========================================================================================
+
+//Código arreglo, busqueda binaria
+#include <iostream>
+#include<Windows.h>
+#include<math.h>
+using namespace std;
+
+// Función para ordenar el arreglo de menor a mayor utilizando el algoritmo de ordenación de burbuja
+void ordenarArreglo(int arreglo[], int tamao) {
+    for (int i = 0; i < tamao - 1; i++) {
+        for (int j = 0; j < tamao - i - 1; j++) {
+            if (arreglo[j] > arreglo[j + 1]) {
+                // Intercambiar elementos si están en el orden incorrecto
+                int temp = arreglo[j];
+                arreglo[j] = arreglo[j + 1];
+                arreglo[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// Función para realizar la búsqueda binaria
+int busquedaBinaria(int arreglo[], int inicio, int fin, int valorBusc) {
+    if (inicio <= fin) {
+        int medio = inicio + (fin - inicio) / 2;
+
+        // Si el valor buscado es igual al valor en el medio, se encontró
+        if (arreglo[medio] == valorBusc) {
+            return medio;
+        }
+        // Si el valor buscado es menor que el valor en el medio, buscar en la mitad izquierda del arreglo
+        if (arreglo[medio] > valorBusc) {
+            return busquedaBinaria(arreglo, inicio, medio - 1, valorBusc);
+        }
+        // Si el valor buscado es mayor que el valor en el medio, buscar en la mitad derecha del arreglo
+        return busquedaBinaria(arreglo, medio + 1, fin, valorBusc);
+    }
+    // El valor buscado no se encontró en el arreglo
+    return -1;
+}
+
+int main() {
+    const int tamano = 10;
+    int arreglo[tamano];
+    cout << "\t\t\t - Bienvenido al programa de busqueda binaria -" << endl;
+    cout << endl;
+    cout << "Ingrese " << tamano << " numeros: " << endl;
+    for (int i = 0; i < tamano; i++) {
+        cout << "-. ";
+        cin >> arreglo[i];
+    }
+
+    ordenarArreglo(arreglo, tamano);
+
+    cout << "Arreglo ordenado: ";
+    for (int i = 0; i < tamano; i++) {
+        cout << arreglo[i] << " ";
+    }
+    cout << endl;
+    //"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    int valorBusc;
+    cout << "Ingrese el numero que desea buscar: " << endl;
+    cin >> valorBusc;
+
+    int indiceEncontrado = busquedaBinaria(arreglo, 0, tamano - 1, valorBusc);
+
+    if (indiceEncontrado != -1) {
+        cout << "El valor " << valorBusc << " se encuentra en el indice. " << indiceEncontrado << endl;
+        cout << endl;
+    }
+    else {
+        cout << "El valor " << valorBusc << " no se encuentra en el arreglo." << endl;
+        cout << endl;
+    }
+    
+    cout << endl;
+    cout << "\t\t\t- Gracias por utilizar el programa, adios-" << endl;
+    return 0;
+}
