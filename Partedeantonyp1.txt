@@ -1,0 +1,89 @@
+//parte de antony
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+void seleccion(int arr[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        int Wiii = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[j] < arr[Wiii]) {
+                Wiii = j;
+            }
+        }
+        swap(arr[i], arr[Wiii]);
+    }
+}
+
+void insercion(string arr[], int n) {
+    for (int i = 1; i < n; ++i) {
+        string ola = arr[i];
+        int j = i - 1;
+
+        while (j >= 0 && arr[j] > ola) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+
+        arr[j + 1] = ola;
+    }
+}
+
+void burbujaSeleccion(int arr[], int n) {
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < n - i - 1; ++j) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+int main() {
+    int arregloNumerico[10];
+    string arregloCadenas[10];
+
+    cout << "Llenar arreglo numerico:" << endl;
+    for (int i = 0; i < 10; ++i) {
+        cout << "Ingrese el valor " << i + 1 << ": ";
+        cin >> arregloNumerico[i];
+    }
+
+    cout << "Llenar arreglo de cadenas:" << endl;
+    for (int i = 0; i < 10; ++i) {
+        cout << "Ingrese la cadena " << i + 1 << ": ";
+        cin >> arregloCadenas[i];
+    }
+
+    
+    seleccion(arregloNumerico, 10);
+    insercion(arregloCadenas, 10);
+    burbujaSeleccion(arregloNumerico, 10);
+
+    
+    cout << "Arreglo numerico ordenado: "<<endl;
+    for (int i = 0; i < 10; ++i) {
+        cout << arregloNumerico[i] << " ";
+    }
+    cout << endl;
+
+    cout << "Arreglo de cadenas ordenado: " << endl;
+    for (int i = 0; i < 10; ++i) {
+        cout << arregloCadenas[i] << " ";
+    }
+    cout << endl;
+
+    cout << "Dios me ayuda " << endl;
+    int tam = sizeof(arregloNumerico) / sizeof(arregloNumerico[0]);
+    burbujaSeleccion(arregloNumerico, tam);
+    for (int o = 0; o < 10; o++) {
+        cout << arregloNumerico[o] << ", ";
+    }
+
+    
+
+
+    return 0;
+}
